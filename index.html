@@ -1107,16 +1107,25 @@
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: clamp(2rem, 6vw, 2.5rem);
             }
 
-            .hero p {
-                font-size: 1.2rem;
+            .hero-subtitle {
+                font-size: clamp(1rem, 3vw, 1.2rem);
+            }
+
+            .hero-description {
+                font-size: clamp(0.9rem, 2.5vw, 1rem);
             }
 
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
             }
 
             .about-content,
@@ -1126,12 +1135,30 @@
                 gap: 2rem;
             }
 
+            .about-text {
+                padding: 2rem;
+            }
+
             .about-stats {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
             }
 
             .hobbies-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .hobby-card {
+                padding: 2rem;
+            }
+
+            .hobby-icon {
+                font-size: 3rem;
             }
 
             .video-thumbnails {
@@ -1142,36 +1169,191 @@
                 padding: 3rem 1rem;
             }
 
+            .section-title {
+                font-size: 2rem;
+            }
+
             .channel-header {
                 flex-direction: column;
                 text-align: center;
+                gap: 1rem;
+            }
+
+            .channel-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
             }
 
             .video-categories {
                 justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .category-tag {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .profile-card {
+                padding: 2rem;
+            }
+
+            .profile-icon {
+                font-size: 3rem;
+            }
+
+            .skills {
+                justify-content: center;
+            }
+
+            .skill-tag {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
             }
         }
 
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: clamp(1.8rem, 5vw, 2rem);
             }
 
             .hero-subtitle {
-                font-size: 1rem;
+                font-size: clamp(0.9rem, 2.5vw, 1rem);
             }
 
             .hero-description {
+                font-size: clamp(0.8rem, 2vw, 0.9rem);
+            }
+
+            .hero-buttons {
+                gap: 0.8rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
                 font-size: 0.9rem;
             }
 
             .about-stats {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .stat-item {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
             }
 
             .channel-stats {
                 flex-direction: column;
                 align-items: center;
+                gap: 0.5rem;
+            }
+
+            .channel-stats span {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .about-text {
+                padding: 1.5rem;
+            }
+
+            .hobby-card {
+                padding: 1.5rem;
+            }
+
+            .hobby-stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .hobby-stats span {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .footer {
+                padding: 2rem 1rem 1rem;
+            }
+
+            .social-links a {
+                width: 40px;
+                height: 40px;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .logo-icon {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .hero-description {
+                font-size: 0.8rem;
+            }
+
+            .cta-button {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .about-text {
+                padding: 1rem;
+            }
+
+            .hobby-card {
+                padding: 1rem;
+            }
+
+            .profile-card {
+                padding: 1.5rem;
+            }
+
+            .channel-card {
+                padding: 1.5rem;
             }
         }
 
