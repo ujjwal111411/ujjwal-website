@@ -86,6 +86,13 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: #00d4ff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
         }
 
         .nav-links {
@@ -102,6 +109,9 @@
             position: relative;
             padding: 0.5rem 1rem;
             border-radius: 25px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .nav-links a:hover {
@@ -124,6 +134,67 @@
 
         .nav-links a:hover::after {
             width: 80%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #00d4ff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 1rem 0;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-menu li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 2rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
         }
 
         /* Hero Section */
@@ -172,19 +243,53 @@
             text-align: center;
             z-index: 1;
             position: relative;
+            padding: 0 2rem;
+            overflow: visible;
         }
 
         .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00d4ff, #0099cc, #00d4ff);
-            background-size: 200% 200%;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #00d4ff, #0099cc, #00d4ff, #ffffff);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradientShift 3s ease-in-out infinite;
+            animation: gradientShift 4s ease-in-out infinite;
             text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: #cccccc;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: #999999;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes gradientShift {
@@ -192,15 +297,19 @@
             50% { background-position: 100% 50%; }
         }
 
-        .hero p {
-            font-size: 1.5rem;
-            color: #cccccc;
-            margin-bottom: 2rem;
-            max-width: 600px;
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
         }
 
         .cta-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             padding: 1rem 2rem;
             background: linear-gradient(45deg, #00d4ff, #0099cc);
             color: white;
@@ -211,6 +320,18 @@
             position: relative;
             overflow: hidden;
             border: 2px solid transparent;
+            font-size: 1rem;
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid #00d4ff;
+            color: #00d4ff;
+        }
+
+        .cta-button.secondary:hover {
+            background: #00d4ff;
+            color: #0a0a0a;
         }
 
         .cta-button::before {
@@ -234,6 +355,25 @@
             left: 100%;
         }
 
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00d4ff;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 2s forwards, bounce 2s infinite 2s;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
         /* Sections */
         .section {
             padding: 5rem 2rem;
@@ -251,44 +391,258 @@
 
         /* About Section */
         .about {
-            background: #111111;
+            background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23333" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+            opacity: 0.5;
         }
 
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
             align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-text {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .about-text:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
         }
 
         .about-text h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
             color: #00d4ff;
+            font-weight: 700;
         }
 
         .about-text p {
             color: #cccccc;
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-            font-weight: 500;
-            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(0, 212, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #999999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: 0.8rem;
+            margin-top: 2rem;
         }
 
         .skill-tag {
-            background: #1a1a1a;
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            color: #00d4ff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            border: 1px solid #00d4ff;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-tag:hover {
+            background: #00d4ff;
+            color: #0a0a0a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .about-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 204, 0.1));
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-icon {
+            font-size: 4rem;
+            color: #00d4ff;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .profile-description {
+            color: #cccccc;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Hobbies Section */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hobby-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hobby-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #00d4ff;
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.2);
+        }
+
+        .hobby-card:hover::before {
+            left: 100%;
+        }
+
+        .hobby-icon {
+            font-size: 3.5rem;
+            color: #00d4ff;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .hobby-card:hover .hobby-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .hobby-card h3 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hobby-card p {
+            color: #cccccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .hobby-stats {
+            display: flex;
+            justify-content: space-around;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hobby-stats span {
+            background: rgba(0, 212, 255, 0.1);
             color: #00d4ff;
             padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            border: 1px solid #00d4ff;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 212, 255, 0.3);
         }
 
         /* Projects Section */
@@ -348,6 +702,200 @@
             color: #00d4ff;
             text-decoration: none;
             font-size: 0.9rem;
+        }
+
+        /* YouTube Section */
+        .youtube-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .channel-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(42, 42, 42, 0.9));
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .channel-card:hover {
+            border-color: rgba(0, 212, 255, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .channel-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .channel-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff0000, #ff4444);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .channel-details h3 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .channel-details p {
+            color: #cccccc;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .channel-stats {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .channel-stats span {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .channel-description {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .video-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-tag {
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff4444;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .category-tag:hover {
+            background: rgba(255, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .video-showcase {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .video-placeholder {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 3rem;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 15px;
+            border: 2px dashed rgba(0, 212, 255, 0.3);
+        }
+
+        .video-placeholder i {
+            font-size: 4rem;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        .video-placeholder h4 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-placeholder p {
+            color: #cccccc;
+        }
+
+        .video-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .thumbnail {
+            aspect-ratio: 16/9;
+            background: linear-gradient(45deg, #333, #444);
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .thumbnail-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .thumbnail:hover .thumbnail-overlay {
+            opacity: 1;
+        }
+
+        .thumbnail-overlay i {
+            color: #00d4ff;
+            font-size: 2rem;
+        }
+
+        .thumbnail span {
+            position: absolute;
+            bottom: 0.5rem;
+            left: 0.5rem;
+            right: 0.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            padding: 0.3rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            text-align: center;
         }
 
         /* Contact Section */
@@ -418,20 +966,144 @@
 
         /* Footer */
         .footer {
-            background: #0a0a0a;
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid #333;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 3rem 2rem 1rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
         }
 
-        .footer p {
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #cccccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-section ul li {
+            color: #cccccc;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: #00d4ff;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .social-links a:hover {
+            color: #0a0a0a;
+            transform: translateY(-3px) rotate(360deg);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .social-links a:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .social-links a i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
             color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom i {
+            margin: 0 0.2rem;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: block;
             }
 
             .hero h1 {
@@ -442,13 +1114,64 @@
                 font-size: 1.2rem;
             }
 
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
             .about-content,
-            .contact-content {
+            .contact-content,
+            .youtube-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hobbies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-thumbnails {
                 grid-template-columns: 1fr;
             }
 
             .section {
                 padding: 3rem 1rem;
+            }
+
+            .channel-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .video-categories {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-description {
+                font-size: 0.9rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .channel-stats {
+                flex-direction: column;
+                align-items: center;
             }
         }
 
@@ -473,29 +1196,21 @@
         .typewriter {
             overflow: hidden;
             white-space: nowrap;
-            animation: typing 3.5s steps(40, end);
+            border-right: 3px solid #00d4ff;
             position: relative;
-        }
-
-        .typewriter::after {
-            content: '';
-            position: absolute;
-            right: -2px;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: #00d4ff;
-            animation: blink-caret 0.75s step-end infinite;
+            width: 0;
+            animation: typing 8s steps(50, end) 0.5s infinite, blink-caret 0.75s step-end infinite 8s;
         }
 
         @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
+            0% { width: 0; }
+            50% { width: 100%; }
+            100% { width: 0; }
         }
 
         @keyframes blink-caret {
-            from, to { opacity: 0; }
-            50% { opacity: 1; }
+            from, to { border-color: transparent; }
+            50% { border-color: #00d4ff; }
         }
     </style>
 </head>
@@ -506,21 +1221,51 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo text-glow">Ujjwal Sheoran</div>
+            <div class="logo text-glow">
+                <i class="fas fa-rocket logo-icon"></i>
+                Ujjwal Sheoran
+            </div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#hobbies">Hobbies</a></li>
-                <li><a href="#youtube">YouTube</a></li>
+                <li><a href="#home"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="#about"><i class="fas fa-user"></i>About</a></li>
+                <li><a href="#hobbies"><i class="fas fa-heart"></i>Hobbies</a></li>
+                <li><a href="#youtube"><i class="fab fa-youtube"></i>YouTube</a></li>
             </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#home"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="#about"><i class="fas fa-user"></i>About</a></li>
+            <li><a href="#hobbies"><i class="fas fa-heart"></i>Hobbies</a></li>
+            <li><a href="#youtube"><i class="fab fa-youtube"></i>YouTube</a></li>
+        </ul>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1 class="typewriter">Hi, I'm Ujjwal Sheoran!</h1>
-            <a href="#about" class="cta-button glow">Learn More About Me</a>
+            <p class="hero-subtitle">Young Developer & Content Creator</p>
+            <p class="hero-description">Passionate about coding, chess, and creating awesome content. Join me on my journey of learning and discovery!</p>
+            <div class="hero-buttons">
+                <a href="#about" class="cta-button glow">
+                    <i class="fas fa-user"></i>
+                    Learn More About Me
+                </a>
+                <a href="#youtube" class="cta-button secondary">
+                    <i class="fab fa-youtube"></i>
+                    Watch My Videos
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
@@ -529,17 +1274,102 @@
         <h2 class="section-title text-glow">About Me</h2>
         <div class="about-content">
             <div class="about-text fade-in">
-                <p>My name is Ujjwal Sheoran. I am 10 years old.</p>
+                <h3>Young Innovator & Creator</h3>
+                <p>Hi there! I'm Ujjwal Sheoran, a passionate 10-year-old developer and content creator. I love exploring the world of technology, solving puzzles, and sharing my journey with others.</p>
+                <p>When I'm not coding or playing chess, you'll find me creating fun and educational content for my YouTube channel. I believe that learning should be exciting and accessible to everyone!</p>
+                
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Years Old</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Videos Created</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Projects Built</div>
+                    </div>
+                </div>
+
+                <h4 style="color: #00d4ff; margin-top: 2rem; margin-bottom: 1rem;">What I Love:</h4>
+                <div class="skills">
+                    <span class="skill-tag">Coding</span>
+                    <span class="skill-tag">Chess</span>
+                    <span class="skill-tag">Gaming</span>
+                    <span class="skill-tag">YouTube</span>
+                    <span class="skill-tag">Learning</span>
+                    <span class="skill-tag">Problem Solving</span>
+                </div>
+            </div>
+            
+            <div class="about-image fade-in">
+                <div class="profile-card">
+                    <div class="profile-card-content">
+                        <div class="profile-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="profile-title">Future Tech Leader</div>
+                        <div class="profile-description">
+                            Passionate about technology and innovation. Always excited to learn new things and share knowledge with the world!
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- What I Like to Do Section -->
     <section id="hobbies" class="section">
-        <h2 class="section-title text-glow">What I Like to Do</h2>
-        <div class="about-content">
-            <div class="about-text fade-in">
-                <p>I like to play chess and games and coding!</p>
+        <h2 class="section-title text-glow">What I Love to Do</h2>
+        <div class="hobbies-grid">
+            <div class="hobby-card fade-in">
+                <div class="hobby-icon">
+                    <i class="fas fa-chess"></i>
+                </div>
+                <h3>Chess</h3>
+                <p>I love playing chess! It's like solving a puzzle with every move. Chess teaches me strategic thinking and patience.</p>
+                <div class="hobby-stats">
+                    <span>Rating: 1200+</span>
+                    <span>Games: 500+</span>
+                </div>
+            </div>
+            
+            <div class="hobby-card fade-in">
+                <div class="hobby-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Coding</h3>
+                <p>Creating websites, games, and apps is super fun! I love turning my ideas into reality through code.</p>
+                <div class="hobby-stats">
+                    <span>Languages: 3+</span>
+                    <span>Projects: 10+</span>
+                </div>
+            </div>
+            
+            <div class="hobby-card fade-in">
+                <div class="hobby-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3>Gaming</h3>
+                <p>Video games are awesome! They help me learn problem-solving and teamwork while having fun.</p>
+                <div class="hobby-stats">
+                    <span>Games: 20+</span>
+                    <span>Hours: 1000+</span>
+                </div>
+            </div>
+            
+            <div class="hobby-card fade-in">
+                <div class="hobby-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>Content Creation</h3>
+                <p>Making YouTube videos is exciting! I love sharing my knowledge and experiences with others.</p>
+                <div class="hobby-stats">
+                    <span>Videos: 100+</span>
+                    <span>Subscribers: Growing!</span>
+                </div>
             </div>
         </div>
     </section>
@@ -547,24 +1377,116 @@
     <!-- YouTube Channel Section -->
     <section id="youtube" class="section about">
         <h2 class="section-title text-glow">My YouTube Channel</h2>
-        <div class="about-content">
-            <div class="about-text fade-in">
-                <p>Check out my YouTube channel "Ujjwal Sheoran" for awesome content!</p>
-                <div style="margin-top: 2rem;">
-                    <a href="https://www.youtube.com/channel/UC3BRrA2UkNgOV6Iy2e55Yhw" target="_blank" class="cta-button glow" style="display: inline-block; text-decoration: none;">
-                        <i class="fab fa-youtube" style="margin-right: 10px;"></i>
-                        Subscribe to Ujjwal Sheoran
+        <div class="youtube-content">
+            <div class="youtube-info fade-in">
+                <div class="channel-card">
+                    <div class="channel-header">
+                        <div class="channel-avatar">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="channel-details">
+                            <h3>Ujjwal Sheoran</h3>
+                            <p>Young Developer & Content Creator</p>
+                            <div class="channel-stats">
+                                <span><i class="fas fa-users"></i> Growing Community</span>
+                                <span><i class="fas fa-video"></i> 100+ Videos</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="channel-description">
+                        Welcome to my YouTube channel! Here I share my coding adventures, chess strategies, gaming highlights, and everything I'm learning along the way. Join me on this exciting journey of discovery and fun!
+                    </p>
+                    <div class="video-categories">
+                        <span class="category-tag">Coding Tutorials</span>
+                        <span class="category-tag">Chess Games</span>
+                        <span class="category-tag">Gaming Content</span>
+                        <span class="category-tag">Learning Tips</span>
+                    </div>
+                    <a href="https://www.youtube.com/channel/UC3BRrA2UkNgOV6Iy2e55Yhw" target="_blank" class="cta-button glow">
+                        <i class="fab fa-youtube"></i>
+                        Subscribe & Watch
                     </a>
+                </div>
+            </div>
+            
+            <div class="youtube-preview fade-in">
+                <div class="video-showcase">
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle"></i>
+                        <h4>Latest Videos</h4>
+                        <p>Check out my newest content!</p>
+                    </div>
+                    <div class="video-thumbnails">
+                        <div class="thumbnail">
+                            <div class="thumbnail-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <span>Coding Fun</span>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="thumbnail-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <span>Chess Strategy</span>
+                        </div>
+                        <div class="thumbnail">
+                            <div class="thumbnail-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <span>Gaming Time</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-
-
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 Ujjwal Sheoran. All rights reserved. Made with ❤️</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Ujjwal Sheoran</h3>
+                <p>Young developer, content creator, and chess enthusiast. Always learning, always growing!</p>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/channel/UC3BRrA2UkNgOV6Iy2e55Yhw" target="_blank" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#hobbies">Hobbies</a></li>
+                    <li><a href="#youtube">YouTube</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>My Skills</h4>
+                <ul>
+                    <li>Coding & Development</li>
+                    <li>Chess Strategy</li>
+                    <li>Content Creation</li>
+                    <li>Problem Solving</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Ujjwal Sheoran. All rights reserved. Made with <i class="fas fa-heart" style="color: #ff4444;"></i> and lots of <i class="fas fa-coffee" style="color: #8B4513;"></i></p>
+        </div>
     </footer>
 
     <script>
@@ -616,12 +1538,78 @@
             });
         });
 
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobileMenu').classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
             handleScrollAnimations();
             handleNavbarScroll();
+            
+            // Add loading animation
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+            
+            // Start typewriter animation
+            startTypewriter();
         });
+        
+        // Typewriter animation function
+        function startTypewriter() {
+            const typewriterElement = document.querySelector('.typewriter');
+            if (typewriterElement) {
+                // Get the text content to calculate proper width
+                const text = typewriterElement.textContent;
+                
+                // Create a temporary span to measure the text width
+                const tempSpan = document.createElement('span');
+                tempSpan.style.visibility = 'hidden';
+                tempSpan.style.position = 'absolute';
+                tempSpan.style.whiteSpace = 'nowrap';
+                tempSpan.style.font = window.getComputedStyle(typewriterElement).font;
+                tempSpan.textContent = text;
+                document.body.appendChild(tempSpan);
+                
+                const textWidth = tempSpan.offsetWidth;
+                document.body.removeChild(tempSpan);
+                
+                // Set the max-width to ensure full text is visible
+                typewriterElement.style.maxWidth = textWidth + 'px';
+                
+                // Reset the animation
+                typewriterElement.style.animation = 'none';
+                typewriterElement.offsetHeight; // Trigger reflow
+                
+                // Start the animation with proper timing
+                setTimeout(() => {
+                    typewriterElement.style.animation = 'typing 12s steps(50, end) 0.5s infinite, blink-caret 0.75s step-end infinite 6s';
+                }, 100);
+            }
+        }
 
         // Event listeners
         window.addEventListener('scroll', function() {
@@ -642,6 +1630,36 @@
                 particle.style.transform = `translate(${x}px, ${y}px)`;
             });
         });
+
+        // Add smooth reveal animations for elements
+        function addRevealAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                // Skip typewriter elements to avoid conflicts
+                if (!el.classList.contains('typewriter')) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    observer.observe(el);
+                }
+            });
+        }
+
+        // Initialize reveal animations
+        document.addEventListener('DOMContentLoaded', addRevealAnimations);
     </script>
 </body>
 </html>
